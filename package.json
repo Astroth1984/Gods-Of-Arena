@@ -1,0 +1,19 @@
+{
+  "name": "goa",
+  "version": "1.0.0",
+  "description": "God Of Arena : Coding Game for Pulp internship",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "El Mounir",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2",
+    "pg": "^7.18.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.4"
+  }
+}
