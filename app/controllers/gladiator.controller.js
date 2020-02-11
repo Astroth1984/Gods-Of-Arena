@@ -5,7 +5,6 @@ const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    // Validate request
   if (!req.body.name) {
     res.status(400).send({
       message: "Content can not be empty!"
@@ -13,14 +12,12 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Tutorial
   const gladiator = {
     name: req.body.name,
     type: req.body.type,
     modifieur: req.body.modifieur
   };
 
-  // Save Tutorial in the database
   Gladiator.create(gladiator)
     .then(data => {
       res.send(data);
@@ -36,9 +33,25 @@ exports.create = (req, res) => {
 
 
 exports.findAll = (req, res) => {
-
   const name = req.query.name;
   var condition = name ? { name: { [Op.iLike]: `%${name}%` } } : null;
+
+  Gladiator.findAll({ where: condition })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving gladiators."
+      });
+    });
+  
+};
+
+exports.findByType = (req, res) => {
+  const type = req.query.type;
+  var condition = type ? { type: { [Op.iLike]: `%${type}%` } } : null;
 
   Gladiator.findAll({ where: condition })
     .then(data => {

@@ -20,6 +20,8 @@ module.exports = app => {
   
    
     router.delete("/", gladiators.deleteAll);
+
+    router.get("/type/:type", gladiators.findByType);
   
     app.use('/api/gladiators', router);
   };
