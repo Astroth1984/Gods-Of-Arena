@@ -2,9 +2,9 @@ const db = require("../models");
 const Gladiator = db.gladiators;
 const Op = db.Sequelize.Op;
 
-
+// Create a Gladiator
 exports.create = (req, res) => {
-
+  
   if (!req.body.name) {
     res.status(400).send({
       message: "Content can not be empty!"
@@ -31,7 +31,7 @@ exports.create = (req, res) => {
   
 };
 
-
+//Retrieving all Gladiators from the database
 exports.findAll = (req, res) => {
   const name = req.query.name;
   var condition = name ? { name: { [Op.iLike]: `%${name}%` } } : null;
@@ -49,6 +49,7 @@ exports.findAll = (req, res) => {
   
 };
 
+//find gladiators by "type"
 exports.findByType = (req, res) => {
   const type = req.query.type;
   var condition = type ? { type: { [Op.iLike]: `%${type}%` } } : null;
@@ -66,7 +67,7 @@ exports.findByType = (req, res) => {
   
 };
 
-
+//Retrieve Gladiator by "id"
 exports.findOne = (req, res) => {
 
   const id = req.params.id;
@@ -83,7 +84,7 @@ exports.findOne = (req, res) => {
   
 };
 
-
+//Update Gladiator by "id"
 exports.update = (req, res) => {
 
   const id = req.params.id;
@@ -110,7 +111,7 @@ exports.update = (req, res) => {
   
 };
 
-
+// delete Gladiator
 exports.delete = (req, res) => {
     
   const id = req.params.id;
@@ -136,7 +137,7 @@ exports.delete = (req, res) => {
     });
 };
 
-
+//delete all Gladiators
 exports.deleteAll = (req, res) => {
 
     Gladiator.destroy({
